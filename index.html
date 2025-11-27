@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOBA David | Portfolio 2060</title>
+    <title>KOBA David | Portfolio Étudiant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,13 +15,14 @@
         }
 
         :root {
-            --primary: #FF6B35;
-            --secondary: #00E5FF;
-            --accent: #9C27B0;
-            --dark: #0F172B;
-            --darker: #0A0F1C;
-            --light: #F1F8FF;
+            --primary: #4361EE;
+            --secondary: #3A0CA3;
+            --accent: #7209B7;
+            --light: #F8F9FA;
+            --dark: #212529;
             --success: #4CAF50;
+            --gradient: linear-gradient(135deg, #4361EE, #3A0CA3);
+            --gradient-light: linear-gradient(135deg, #4361EE, #7209B7);
         }
 
         .ff-secondary {
@@ -37,13 +38,10 @@
         }
 
         body {
-            background-color: var(--darker);
-            color: var(--light);
+            background-color: var(--light);
+            color: var(--dark);
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(156, 39, 176, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 30%);
+            transition: background-color 0.5s ease;
         }
 
         .container {
@@ -74,15 +72,32 @@
             transition: .5s;
             border: none;
             cursor: pointer;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn.btn-primary,
-        .btn.btn-secondary {
-            color: #FFFFFF;
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
 
         .btn-secondary {
@@ -92,57 +107,32 @@
         }
 
         .btn-primary:hover {
-            background: #E55A2B;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 107, 53, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .btn-square {
-            width: 38px;
-            height: 38px;
-        }
-
-        .btn-sm-square {
-            width: 32px;
-            height: 32px;
-        }
-
-        .btn-lg-square {
-            width: 48px;
-            height: 48px;
-        }
-
-        .btn-square,
-        .btn-sm-square,
-        .btn-lg-square {
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: normal;
-            border-radius: 2px;
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateY(-5px);
         }
 
         /*** Navbar ***/
-        .navbar-dark {
-            position: absolute;
+        .navbar {
+            position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 999;
-            background: transparent !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
             transition: all 0.5s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .sticky-top.navbar-dark {
+        .sticky-top.navbar {
             position: fixed;
-            background: var(--dark) !important;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.5s ease;
         }
 
@@ -174,49 +164,51 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
 
-        .navbar-dark .navbar-nav .nav-link {
+        .navbar .navbar-nav .nav-link {
             position: relative;
             margin-left: 25px;
             padding: 35px 0;
             font-size: 15px;
-            color: var(--light) !important;
+            color: var(--dark) !important;
             text-transform: uppercase;
             font-weight: 500;
             outline: none;
             transition: .5s;
         }
 
-        .sticky-top.navbar-dark .navbar-nav .nav-link {
+        .sticky-top.navbar .navbar-nav .nav-link {
             padding: 20px 0;
         }
 
-        .navbar-dark .navbar-nav .nav-link:hover,
-        .navbar-dark .navbar-nav .nav-link.active {
+        .navbar .navbar-nav .nav-link:hover,
+        .navbar .navbar-nav .nav-link.active {
             color: var(--primary) !important;
         }
 
-        .navbar-dark .navbar-nav .nav-link::after {
+        .navbar .navbar-nav .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background: var(--primary);
+            height: 3px;
+            background: var(--gradient);
             transition: width 0.3s ease;
+            border-radius: 3px;
         }
 
-        .navbar-dark .navbar-nav .nav-link:hover::after,
-        .navbar-dark .navbar-nav .nav-link.active::after {
+        .navbar .navbar-nav .nav-link:hover::after,
+        .navbar .navbar-nav .nav-link.active::after {
             width: 100%;
         }
 
@@ -226,7 +218,7 @@
         }
 
         .nav-links a {
-            color: var(--light);
+            color: var(--dark);
             text-decoration: none;
             font-weight: 500;
             position: relative;
@@ -244,7 +236,7 @@
         }
 
         @media (max-width: 991.98px) {
-            .sticky-top.navbar-dark {
+            .sticky-top.navbar {
                 position: relative;
             }
 
@@ -254,19 +246,20 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(15, 23, 43, 0.95);
+                background: rgba(255, 255, 255, 0.98);
                 flex-direction: column;
                 padding: 20px;
                 gap: 15px;
-                border-top: 1px solid rgba(255, 255, 255, .1);
+                border-top: 1px solid rgba(0, 0, 0, .1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             }
 
             .nav-links.active {
                 display: flex;
             }
 
-            .navbar-dark .navbar-nav .nav-link,
-            .sticky-top.navbar-dark .navbar-nav .nav-link {
+            .navbar .navbar-nav .nav-link,
+            .sticky-top.navbar .navbar-nav .nav-link {
                 padding: 10px 0;
                 margin-left: 0;
             }
@@ -282,6 +275,8 @@
             min-height: 100vh;
             padding-top: 80px;
             animation: fadeIn 0.5s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .page.active {
@@ -295,23 +290,25 @@
 
         /*** Hero Header ***/
         .hero-header {
-            background: linear-gradient(rgba(15, 23, 43, .8), rgba(15, 23, 43, .8)), url(https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,249,250,0.9) 100%), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
             min-height: 100vh;
             display: flex;
             align-items: center;
+            position: relative;
         }
 
-        .hero-header img {
-            animation: imgRotate 50s linear infinite;
-        }
-
-        @keyframes imgRotate { 
-            100% { 
-                transform: rotate(360deg); 
-            } 
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234361ee' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
         }
 
         .hero {
@@ -333,7 +330,7 @@
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
@@ -344,7 +341,7 @@
             margin-bottom: 30px;
             max-width: 600px;
             line-height: 1.6;
-            color: rgba(241, 248, 255, 0.8);
+            color: rgba(33, 37, 41, 0.8);
         }
 
         .hero-btns {
@@ -363,15 +360,15 @@
         .hologram {
             width: 300px;
             height: 300px;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(156, 39, 176, 0.2));
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
             border-radius: 50%;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 
-                inset 0 0 50px rgba(255, 107, 53, 0.3),
-                0 0 60px rgba(255, 107, 53, 0.2);
+                inset 0 0 50px rgba(67, 97, 238, 0.2),
+                0 0 60px rgba(67, 97, 238, 0.1);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -388,21 +385,22 @@
         .hologram-inner {
             width: 200px;
             height: 200px;
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(156, 39, 176, 0.2));
+            background: linear-gradient(135deg, rgba(114, 9, 183, 0.1), rgba(58, 12, 163, 0.1));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 
-                inset 0 0 30px rgba(0, 229, 255, 0.3),
-                0 0 40px rgba(0, 229, 255, 0.2);
+                inset 0 0 30px rgba(114, 9, 183, 0.2),
+                0 0 40px rgba(114, 9, 183, 0.1);
         }
 
         .hologram-core {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             border-radius: 50%;
+            box-shadow: 0 0 30px rgba(67, 97, 238, 0.5);
         }
 
         @keyframes float {
@@ -427,22 +425,24 @@
             position: absolute;
             content: "";
             width: 45px;
-            height: 2px;
+            height: 3px;
             top: 50%;
             left: -55px;
             margin-top: -1px;
-            background: var(--primary);
+            background: var(--gradient);
+            border-radius: 3px;
         }
 
         .section-title::after {
             position: absolute;
             content: "";
             width: 45px;
-            height: 2px;
+            height: 3px;
             top: 50%;
             right: -55px;
             margin-top: -1px;
-            background: var(--primary);
+            background: var(--gradient);
+            border-radius: 3px;
         }
 
         .section-title.text-start::before,
@@ -455,7 +455,93 @@
             display: inline-block;
         }
 
-        /*** Skills Section ***/
+        /*** About Page ***/
+        #about {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        .profile-info {
+            margin-top: 20px;
+        }
+
+        .profile-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .profile-info i {
+            color: var(--primary);
+        }
+
+        /*** Skills Page ***/
+        #skills {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        #skills .section-title h2 {
+            color: white;
+        }
+
+        #skills .section-title::before,
+        #skills .section-title::after {
+            background: white;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -463,14 +549,15 @@
         }
 
         .skill-card {
-            background: rgba(15, 23, 43, 0.7);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 25px;
             text-align: center;
             transition: .5s;
-            box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             height: calc(100% - 38px);
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -482,19 +569,19 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-light);
         }
 
         .skill-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary);
+            border-color: rgba(255, 255, 255, 0.5);
             height: 100%;
         }
 
         .skill-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: var(--primary);
+            color: white;
             transition: .5s;
         }
 
@@ -505,9 +592,28 @@
         .skill-card h3 {
             margin-bottom: 10px;
             font-size: 1.3rem;
+            color: white;
         }
 
-        /*** Projects Section ***/
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /*** Projects Page ***/
+        #projects {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        #projects .section-title h2 {
+            color: white;
+        }
+
+        #projects .section-title::before,
+        #projects .section-title::after {
+            background: white;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -515,24 +621,30 @@
         }
 
         .project-card {
-            background: rgba(15, 23, 43, 0.7);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             overflow: hidden;
             transition: .5s;
-            box-shadow: 0 0 45px rgba(0, 0, 0, .08);
-            border: 1px solid rgba(255, 107, 53, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .project-img {
             height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: var(--gradient-light);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
         }
 
         .project-content {
@@ -542,10 +654,11 @@
         .project-content h3 {
             margin-bottom: 10px;
             font-size: 1.3rem;
+            color: white;
         }
 
         .project-content p {
-            color: rgba(241, 248, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 15px;
         }
 
@@ -557,14 +670,28 @@
         }
 
         .project-tag {
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--primary);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
         }
 
-        /*** Contact Section ***/
+        /*** Contact Page ***/
+        #contact {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        #contact .section-title h2 {
+            color: white;
+        }
+
+        #contact .section-title::before,
+        #contact .section-title::after {
+            background: white;
+        }
+
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -584,30 +711,34 @@
             transition: .5s;
             padding: 15px;
             border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .contact-item:hover {
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
         }
 
         .contact-icon {
             width: 50px;
             height: 50px;
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            color: var(--primary);
+            color: white;
         }
 
         .contact-form {
-            background: rgba(15, 23, 43, 0.7);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 107, 53, 0.1);
-            box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -618,22 +749,27 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: white;
         }
 
         .form-control {
             width: 100%;
             padding: 12px 15px;
-            background: rgba(10, 15, 28, 0.7);
-            border: 1px solid rgba(255, 107, 53, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            color: var(--light);
+            color: white;
             transition: all 0.3s ease;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         textarea.form-control {
@@ -643,16 +779,17 @@
 
         /*** Footer ***/
         footer {
-            background: rgba(10, 15, 28, 0.9);
-            padding: 40px 0;
-            margin-top: 80px;
-            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            background: var(--dark);
+            padding: 40px 0 20px;
+            margin-top: 0;
+            color: white;
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 30px;
         }
 
         .social-links {
@@ -662,21 +799,23 @@
 
         .footer .btn.btn-social {
             margin-right: 5px;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
+            color: white;
             border: 1px solid #FFFFFF;
-            border-radius: 35px;
+            border-radius: 50%;
             transition: .3s;
             text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .footer .btn.btn-social:hover {
             color: var(--primary);
             background: white;
+            transform: translateY(-5px);
         }
 
         .footer .copyright {
@@ -697,21 +836,22 @@
             right: 45px;
             bottom: 45px;
             z-index: 99;
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
 
         .back-to-top:hover {
-            background: #E55A2B;
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6);
         }
 
         /*** Responsive ***/
@@ -729,6 +869,10 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
+
+            .about-content {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 768px) {
@@ -740,19 +884,24 @@
             .section-title::after {
                 display: none;
             }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Spinner -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 h-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner" class="show position-fixed translate-middle w-100 h-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Chargement...</span>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-dark sticky-top">
+    <nav class="navbar sticky-top">
         <div class="container nav-container">
             <div class="logo">
                 <div class="logo-icon">KD</div>
@@ -779,11 +928,11 @@
             <div class="container">
                 <div class="hero">
                     <div class="hero-content">
-                        <h1>Bienvenue dans <span>l'avenir numérique</span></h1>
-                        <p>Je suis KOBA David, spécialiste en Data Science et Intelligence Artificielle. Je crée des solutions innovantes qui repoussent les limites de la technologie.</p>
+                        <h1>Bienvenue dans <span>mon univers digital</span></h1>
+                        <p>Je suis KOBA David, étudiant passionné par la Digitalisation et la Science des Données. Je crée des solutions innovantes qui repoussent les limites de la technologie.</p>
                         <div class="hero-btns">
                             <a href="#" class="btn btn-primary" data-page="projects">Voir mes projets</a>
-                            <a href="#" class="btn btn-secondary" data-page="contact">Me contacter</a>
+                            <a href="#" class="btn btn-secondary" data-page="about">En savoir plus</a>
                         </div>
                     </div>
                     <div class="hero-visual">
@@ -806,20 +955,30 @@
             </div>
             
             <div class="about-content">
-                <div class="hero">
-                    <div class="hero-content">
-                        <h1>Visionnaire <span>Digital</span></h1>
-                        <p>Passionné par les technologies émergentes, je me spécialise dans la création de solutions d'intelligence artificielle et de systèmes autonomes. Mon objectif est de façonner l'avenir numérique grâce à l'innovation et la créativité.</p>
-                        <p>Avec une expertise en Machine Learning, Robotique et Data Science, je transforme des concepts complexes en applications pratiques qui améliorent notre quotidien.</p>
-                        <div class="hero-btns">
-                            <a href="#" class="btn btn-primary" data-page="skills">Mes compétences</a>
-                        </div>
+                <div class="about-text">
+                    <h1>Étudiant Passionné <span>par la Tech</span></h1>
+                    <p>Je m'appelle KOBA David, j'ai 17 ans et je suis étudiant à SCITI (Sémé City Institute of Technology and Innovation) en Digitalisation et Science des Données.</p>
+                    <p>Passionné par l'Intelligence Artificielle et la Robotique, je consacre mon temps à l'apprentissage des technologies émergentes et au développement de projets innovants.</p>
+                    <p>Avec des compétences en Python, IA, Réseaux de Neurones, Data Science et Robotique, je cherche constamment à transformer des concepts complexes en applications pratiques.</p>
+                    <p>Toujours en quête de solutions innovantes grâce à un esprit créatif et curieux, je crois fermement que la technologie peut résoudre les défis de demain.</p>
+                    <div class="hero-btns">
+                        <a href="#" class="btn btn-primary" data-page="skills">Mes compétences</a>
+                        <a href="#" class="btn btn-secondary" data-page="contact">Me contacter</a>
                     </div>
-                    <div class="hero-visual">
-                        <div class="hologram">
-                            <div class="hologram-inner">
-                                <div class="hologram-core"></div>
-                            </div>
+                </div>
+                <div class="about-visual">
+                    <div class="profile-card">
+                        <div class="profile-img">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h2>KOBA David</h2>
+                        <p>Étudiant en Digitalisation et Science des Données</p>
+                        
+                        <div class="profile-info">
+                            <p><i class="fas fa-birthday-cake"></i> 17 ans</p>
+                            <p><i class="fas fa-graduation-cap"></i> SCITI</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Sémé City, Bénin</p>
+                            <p><i class="fas fa-heart"></i> IA & Robotique</p>
                         </div>
                     </div>
                 </div>
@@ -861,7 +1020,7 @@
                 
                 <div class="skill-card">
                     <div class="skill-icon">
-                        <i class="fas fa-code"></i>
+                        <i class="fab fa-python"></i>
                     </div>
                     <h3>Développement Python</h3>
                     <p>Création d'applications robustes avec les bibliothèques scientifiques Python.</p>
@@ -877,10 +1036,10 @@
                 
                 <div class="skill-card">
                     <div class="skill-icon">
-                        <i class="fas fa-vr-cardboard"></i>
+                        <i class="fas fa-database"></i>
                     </div>
-                    <h3>Réalité Virtuelle</h3>
-                    <p>Développement d'environnements immersifs et d'interfaces homme-machine innovantes.</p>
+                    <h3>Digitalisation</h3>
+                    <p>Transformation des processus traditionnels en solutions numériques innovantes.</p>
                 </div>
             </div>
         </div>
@@ -895,7 +1054,9 @@
             
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-img"></div>
+                    <div class="project-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
                     <div class="project-content">
                         <h3>Système de Vision Robotique</h3>
                         <p>Développement d'un système de vision par ordinateur permettant aux robots de naviguer de manière autonome dans des environnements complexes.</p>
@@ -909,7 +1070,9 @@
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-img"></div>
+                    <div class="project-img">
+                        <i class="fas fa-assistive-listening-systems"></i>
+                    </div>
                     <div class="project-content">
                         <h3>Assistant IA Personnel</h3>
                         <p>Création d'un assistant virtuel intelligent capable d'apprendre et de s'adapter aux préférences de l'utilisateur.</p>
@@ -923,7 +1086,9 @@
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-img"></div>
+                    <div class="project-img">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
                     <div class="project-content">
                         <h3>Plateforme d'Analyse Prédictive</h3>
                         <p>Développement d'une plateforme web pour l'analyse et la visualisation de données avec des capacités prédictives avancées.</p>
@@ -954,7 +1119,7 @@
                         </div>
                         <div>
                             <h3>Email</h3>
-                            <p>koba.david@future-tech.io</p>
+                            <p>koba.david@sciti.edu</p>
                         </div>
                     </div>
                     
@@ -964,7 +1129,7 @@
                         </div>
                         <div>
                             <h3>Téléphone</h3>
-                            <p>+33 6 12 34 56 78</p>
+                            <p>+229 XX XX XX XX</p>
                         </div>
                     </div>
                     
@@ -974,22 +1139,25 @@
                         </div>
                         <div>
                             <h3>Localisation</h3>
-                            <p>Paris, France</p>
+                            <p>Sémé City, Bénin</p>
                         </div>
                     </div>
                     
                     <div class="social-links">
                         <a href="#" class="btn btn-social">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#" class="btn btn-social">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="btn btn-social">
-                            <i class="fab fa-twitter"></i>
+                            <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="#" class="btn btn-social">
                             <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-social">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="btn btn-social">
+                            <i class="fab fa-github"></i>
                         </a>
                     </div>
                 </div>
@@ -998,22 +1166,22 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nom</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" class="form-control" placeholder="Votre nom" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" class="form-control" placeholder="Votre email" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="subject">Sujet</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" class="form-control" placeholder="Sujet de votre message" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" class="form-control" placeholder="Votre message" required></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Envoyer le message</button>
@@ -1027,26 +1195,32 @@
     <footer>
         <div class="container">
             <div class="footer-content">
+                <div class="social-links">
+                    <a href="#" class="btn btn-social">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="btn btn-social">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="btn btn-social">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="btn btn-social">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="btn btn-social">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                
                 <div class="logo">
                     <div class="logo-icon">KD</div>
                     <span>KOBA David</span>
                 </div>
-                
-                <div class="social-links">
-                    <a href="#" class="btn btn-social">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="btn btn-social">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="btn btn-social">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2060 KOBA David. Tous droits réservés.</p>
+                <p>&copy; 2025 KOBA David. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -1164,7 +1338,7 @@
             }, observerOptions);
             
             // Observe elements for animation
-            document.querySelectorAll('.skill-card, .project-card, .contact-item').forEach(el => {
+            document.querySelectorAll('.skill-card, .project-card, .contact-item, .profile-card').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
                 el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
