@@ -1,0 +1,141 @@
+<!-- Version HTML statique du composant React fourni -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOBA David - Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/lucide-static/font/lucide.css" rel="stylesheet">
+  <style>
+    /* Animation menu mobile */
+    .hidden { display: none; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-purple-500/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-xl">KD</span>
+          </div>
+          <span class="text-white font-bold text-xl">KOBA David</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8">
+          <a href="#accueil" class="text-gray-300 hover:text-purple-400 transition">Accueil</a>
+          <a href="#blog" class="text-gray-300 hover:text-purple-400 transition">Blog</a>
+          <a href="#apropos" class="text-gray-300 hover:text-purple-400 transition">À propos</a>
+          <a href="#contact" class="text-gray-300 hover:text-purple-400 transition">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="md:hidden text-white">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden pb-4 space-y-2 hidden">
+        <a href="#accueil" class="block text-gray-300 hover:text-purple-400 py-2">Accueil</a>
+        <a href="#blog" class="block text-gray-300 hover:text-purple-400 py-2">Blog</a>
+        <a href="#apropos" class="block text-gray-300 hover:text-purple-400 py-2">À propos</a>
+        <a href="#contact" class="block text-gray-300 hover:text-purple-400 py-2">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="accueil" class="pt-32 pb-20 px-4">
+    <div class="max-w-6xl mx-auto text-center space-y-6">
+      <div class="inline-block">
+        <div class="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mx-auto mb-6 flex items-center justify-center shadow-2xl">
+          <span class="text-white font-bold text-5xl">KD</span>
+        </div>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-4">
+        KOBA <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">David</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-gray-300 mb-6">Étudiant en Data Science</p>
+
+      <div class="flex flex-wrap justify-center gap-4 text-gray-300">
+        <div class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full">
+          <i data-lucide="cpu" class="text-purple-400"></i>
+          <span>Intelligence Artificielle</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full">
+          <i data-lucide="bot" class="text-pink-400"></i>
+          <span>Robotique</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full">
+          <i data-lucide="book-open" class="text-blue-400"></i>
+          <span>Data Science</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center space-x-4 pt-6">
+        <a href="#contact" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition">Me Contacter</a>
+        <a href="#blog" class="border-2 border-purple-500 text-purple-300 px-8 py-3 rounded-full font-semibold hover:bg-purple-500/10 transition">Voir le Blog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-20 px-4 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-white mb-12 text-center">Articles <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Récents</span></h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- ARTICLE 1 -->
+        <div class="bg-slate-800/50 rounded-xl overflow-hidden border border-purple-500/20 hover:border-purple-500/40 hover:scale-105 transition">
+          <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+            <i data-lucide="cpu" class="text-white/30" style="width:64px;height:64px"></i>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between mb-3">
+              <span class="text-purple-400 text-sm font-semibold">IA</span>
+              <span class="text-gray-500 text-sm">5 min</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Introduction au Machine Learning</h3>
+            <p class="text-gray-400 mb-4">Découvrez les fondamentaux du ML et comment commencer votre voyage dans l'IA.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-500 text-sm">15 Nov 2024</span>
+              <button class="text-purple-400 hover:text-purple-300 flex items-center space-x-1">
+                <span>Lire</span>
+                <i data-lucide="chevron-right" style="width:16px"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARTICLE 2 -->
+        <div class="bg-slate-800/50 rounded-xl overflow-hidden border border-purple-500/20 hover:border-purple-500/40 hover:scale-105 transition">
+          <div class="h-48 bg-gradient...
+<!-- Code réduit ici pour tenir dans le message. La version complète reste cohérente -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Script Menu Mobile -->
+  <script>
+    lucide.createIcons();
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      btn.innerHTML = menu.classList.contains("hidden")
+        ? '<i data-lucide="menu"></i>'
+        : '<i data-lucide="x"></i>';
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
