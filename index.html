@@ -828,6 +828,246 @@
             transform: scale(1.1);
         }
 
+        /*** Services Page ***/
+        #services {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: .5s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            transition: .5s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: rgba(33, 37, 41, 0.8);
+        }
+
+        /*** Blog Page ***/
+        #blog {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: .5s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-img {
+            height: 200px;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-date {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .blog-content p {
+            color: rgba(33, 37, 41, 0.8);
+            margin-bottom: 15px;
+        }
+
+        /*** Testimonials Page ***/
+        #testimonials {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        #testimonials .section-title h2 {
+            color: white;
+        }
+
+        #testimonials .section-title::before,
+        #testimonials .section-title::after {
+            background: white;
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /*** Social Networks Page ***/
+        #social {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .social-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: .5s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 200px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            transition: .5s;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2);
+        }
+
+        .social-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .social-card a {
+            text-decoration: none;
+            color: var(--dark);
+            display: block;
+        }
+
+        .social-card a:hover {
+            color: var(--primary);
+        }
+
         /*** Contact Page ***/
         #contact {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -934,6 +1174,151 @@
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+
+        /*** Messenger Interface ***/
+        .messenger-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .messenger-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.6);
+        }
+
+        .messenger-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .messenger-header {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .messenger-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .messenger-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .messenger-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.received {
+            background: #f0f0f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.sent {
+            background: var(--gradient);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .messenger-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .messenger-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .messenger-send {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .messenger-send:hover {
+            transform: scale(1.1);
         }
 
         /*** Footer ***/
@@ -1054,6 +1439,11 @@
             .about-content {
                 flex-direction: column;
             }
+
+            .messenger-container {
+                width: 300px;
+                height: 450px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1069,6 +1459,11 @@
             .footer-content {
                 flex-direction: column;
                 gap: 20px;
+            }
+
+            .messenger-container {
+                width: 280px;
+                right: 20px;
             }
         }
     </style>
@@ -1093,7 +1488,11 @@
                 <a href="#" class="nav-link active" data-page="home">Accueil</a>
                 <a href="#" class="nav-link" data-page="about">À Propos</a>
                 <a href="#" class="nav-link" data-page="skills">Compétences</a>
+                <a href="#" class="nav-link" data-page="services">Services</a>
                 <a href="#" class="nav-link" data-page="projects">Projets</a>
+                <a href="#" class="nav-link" data-page="blog">Blog</a>
+                <a href="#" class="nav-link" data-page="testimonials">Témoignages</a>
+                <a href="#" class="nav-link" data-page="social">Réseaux</a>
                 <a href="#" class="nav-link" data-page="contact">Contact</a>
             </div>
             
@@ -1226,6 +1625,65 @@
         </div>
     </section>
 
+    <!-- Services Page -->
+    <section id="services" class="page">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Mes Services</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Développement IA</h3>
+                    <p>Création de solutions d'intelligence artificielle sur mesure pour automatiser vos processus.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analyse de Données</h3>
+                    <p>Extraction d'insights précieux à partir de vos données pour une prise de décision éclairée.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Développement Python</h3>
+                    <p>Conception d'applications Python robustes et évolutives pour répondre à vos besoins spécifiques.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Automatisation</h3>
+                    <p>Automatisation de vos processus métier pour gagner en efficacité et réduire les erreurs.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Formation</h3>
+                    <p>Sessions de formation personnalisées en IA, Data Science et développement Python.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Consulting Tech</h3>
+                    <p>Accompagnement stratégique pour intégrer les technologies émergentes dans votre entreprise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Page -->
     <section id="projects" class="page">
         <div class="container py-5">
@@ -1280,6 +1738,252 @@
                         </div>
                         <a href="#" class="btn btn-secondary">Voir le projet</a>
                     </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Réseau de Neurones Profonds</h3>
+                        <p>Implémentation d'un réseau de neurones convolutif pour la classification d'images médicales avec haute précision.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Deep Learning</span>
+                            <span class="project-tag">Keras</span>
+                            <span class="project-tag">TensorFlow</span>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Application Mobile IA</h3>
+                        <p>Développement d'une application mobile intégrant des fonctionnalités d'IA pour la reconnaissance d'objets en temps réel.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Flutter</span>
+                            <span class="project-tag">TensorFlow Lite</span>
+                            <span class="project-tag">Dart</span>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Plateforme Cloud IA</h3>
+                        <p>Architecture d'une plateforme cloud scalable pour le déploiement de modèles d'IA en production.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">AWS</span>
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">Kubernetes</span>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Page -->
+    <section id="blog" class="page">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Mon Blog</h2>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">15 Mars 2025</div>
+                        <h3>L'avenir de l'IA dans la robotique</h3>
+                        <p>Exploration des dernières avancées en intelligence artificielle et leur impact sur le développement de robots autonomes.</p>
+                        <a href="#" class="btn btn-secondary">Lire l'article</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">10 Février 2025</div>
+                        <h3>Data Science pour débutants</h3>
+                        <p>Guide complet pour commencer en science des données avec Python, des bases aux concepts avancés.</p>
+                        <a href="#" class="btn btn-secondary">Lire l'article</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">28 Janvier 2025</div>
+                        <h3>Les bibliothèques Python essentielles</h3>
+                        <p>Présentation des bibliothèques Python les plus utiles pour le développement d'applications d'IA et de data science.</p>
+                        <a href="#" class="btn btn-secondary">Lire l'article</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">15 Janvier 2025</div>
+                        <h3>Comprendre les réseaux de neurones</h3>
+                        <p>Explication détaillée du fonctionnement des réseaux de neurones et de leur application dans divers domaines.</p>
+                        <a href="#" class="btn btn-secondary">Lire l'article</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">5 Janvier 2025</div>
+                        <h3>Mon parcours à SCITI</h3>
+                        <p>Témoignage sur mon expérience d'étudiant en Digitalisation et Science des Données à SCITI.</p>
+                        <a href="#" class="btn btn-secondary">Lire l'article</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">20 Décembre 2024</div>
+                        <h3>Innovations technologiques 2025</h3>
+                        <p>Prévisions sur les tendances technologiques émergentes qui façonneront l'année 2025.</p>
+                        <a href="#" class="btn btn-secondary">Lire l'article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Page -->
+    <section id="testimonials" class="page">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Témoignages</h2>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "David a développé pour nous un système d'IA qui a révolutionné notre processus de traitement des données. Son expertise technique et sa créativité sont impressionnantes."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Marie Koné</h4>
+                            <p>CEO, DataTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Travailler avec David sur notre projet de robotique a été une expérience exceptionnelle. Sa maîtrise des algorithmes d'IA et sa capacité à résoudre des problèmes complexes sont remarquables."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Jean Akplogan</h4>
+                            <p>Directeur Technique, InnovRobotics</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "David a su transformer nos données brutes en insights actionnables grâce à ses compétences avancées en data science. Un professionnel talentueux et fiable."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Mensah</h4>
+                            <p>Responsable Analytics, FinTech Group</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Networks Page -->
+    <section id="social" class="page">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Mes Réseaux Sociaux</h2>
+            </div>
+            
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-icon" style="color: #1877F2;">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <a href="https://www.facebook.com/share/1AP4e8y39C/?mibextid=wwXIfr" target="_blank">@koba_david</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon" style="color: #25D366;">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/message/B4Q7BARPN36ZA1" target="_blank">+229 01 40 93 75 69</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon" style="color: #E4405F;">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <a href="https://www.instagram.com/koba_david1?igsh=MWIxNXYwOHp4ZW5uZA%3D%3D&utm_source=qr" target="_blank">@koba_david1</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon" style="color: #0A66C2;">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/david-koba-5aba812a8" target="_blank">David Koba</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon" style="color: #333;">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/KOBA2008" target="_blank">@KOBA2008</a>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon" style="color: #1DA1F2;">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter</h3>
+                    <a href="#" target="_blank">@koba_david</a>
                 </div>
             </div>
         </div>
@@ -1371,6 +2075,32 @@
             </div>
         </div>
     </section>
+
+    <!-- Messenger Interface -->
+    <div class="messenger-toggle">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="messenger-container">
+        <div class="messenger-header">
+            <h3>Chat avec David</h3>
+            <button class="messenger-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="messenger-body" id="messengerBody">
+            <div class="message received">
+                Bonjour ! Comment puis-je vous aider aujourd'hui ?
+                <div class="message-time">10:00</div>
+            </div>
+        </div>
+        <div class="messenger-footer">
+            <input type="text" class="messenger-input" placeholder="Tapez votre message...">
+            <button class="messenger-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1514,12 +2244,85 @@
             }, observerOptions);
             
             // Observe elements for animation
-            document.querySelectorAll('.skill-card, .project-card, .contact-item, .profile-card').forEach(el => {
+            document.querySelectorAll('.skill-card, .project-card, .contact-item, .profile-card, .service-card, .blog-card, .testimonial-card, .social-card').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
                 el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                 observer.observe(el);
             });
+
+            // Messenger functionality
+            const messengerToggle = document.querySelector('.messenger-toggle');
+            const messengerContainer = document.querySelector('.messenger-container');
+            const messengerClose = document.querySelector('.messenger-close');
+            const messengerInput = document.querySelector('.messenger-input');
+            const messengerSend = document.querySelector('.messenger-send');
+            const messengerBody = document.getElementById('messengerBody');
+
+            // Toggle messenger
+            messengerToggle.addEventListener('click', function() {
+                messengerContainer.style.display = 'flex';
+            });
+
+            // Close messenger
+            messengerClose.addEventListener('click', function() {
+                messengerContainer.style.display = 'none';
+            });
+
+            // Send message
+            function sendMessage() {
+                const message = messengerInput.value.trim();
+                if (message) {
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'message sent';
+                    userMessage.innerHTML = `${message}<div class="message-time">${getCurrentTime()}</div>`;
+                    messengerBody.appendChild(userMessage);
+                    
+                    // Clear input
+                    messengerInput.value = '';
+                    
+                    // Scroll to bottom
+                    messengerBody.scrollTop = messengerBody.scrollHeight;
+                    
+                    // Simulate response after a delay
+                    setTimeout(function() {
+                        const responses = [
+                            "Merci pour votre message ! Je vous répondrai dès que possible.",
+                            "Intéressant ! Pouvez-vous me donner plus de détails ?",
+                            "Je prends note de votre demande. Je reviens vers vous rapidement.",
+                            "C'est une excellente question ! Laissez-moi y réfléchir.",
+                            "Je suis actuellement occupé, mais je vous répondrai dès que possible."
+                        ];
+                        
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'message received';
+                        botMessage.innerHTML = `${randomResponse}<div class="message-time">${getCurrentTime()}</div>`;
+                        messengerBody.appendChild(botMessage);
+                        
+                        // Scroll to bottom
+                        messengerBody.scrollTop = messengerBody.scrollHeight;
+                    }, 1000 + Math.random() * 2000);
+                }
+            }
+
+            // Send message on button click
+            messengerSend.addEventListener('click', sendMessage);
+
+            // Send message on Enter key
+            messengerInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Get current time for messages
+            function getCurrentTime() {
+                const now = new Date();
+                return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            }
         });
     </script>
 </body>
