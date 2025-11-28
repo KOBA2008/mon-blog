@@ -1236,6 +1236,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .messenger-header h3 {
@@ -1319,6 +1320,67 @@
 
         .messenger-send:hover {
             transform: scale(1.1);
+        }
+
+        /*** Panel d'administration du chat ***/
+        #adminPanel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 2000;
+            width: 400px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #adminToggle {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        #adminToggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .pending-message {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .pending-message:hover {
+            background-color: #f8f9fa;
+        }
+
+        .pending-message.selected {
+            background-color: #e3f2fd;
+            border-color: #4361EE;
         }
 
         /*** Footer ***/
@@ -1444,6 +1506,10 @@
                 width: 300px;
                 height: 450px;
             }
+
+            #adminPanel {
+                width: 350px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1464,6 +1530,15 @@
             .messenger-container {
                 width: 280px;
                 right: 20px;
+            }
+
+            #adminPanel {
+                width: 300px;
+            }
+
+            #adminToggle {
+                left: 20px;
+                bottom: 90px;
             }
         }
     </style>
@@ -2102,6 +2177,24 @@
         </div>
     </div>
 
+    <!-- Panel d'administration du chat -->
+    <div id="adminPanel">
+        <h3 style="margin-bottom: 15px; color: var(--primary);">Répondre aux messages</h3>
+        <div id="pendingMessages" style="max-height: 200px; overflow-y: auto; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
+            <!-- Les messages en attente apparaîtront ici -->
+        </div>
+        <textarea id="adminResponse" placeholder="Votre réponse..." style="width: 100%; height: 100px; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+        <div style="display: flex; gap: 10px;">
+            <button id="sendAdminResponse" class="btn btn-primary" style="flex: 1;">Envoyer la réponse</button>
+            <button id="closeAdminPanel" class="btn btn-secondary">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Bouton pour ouvrir le panel admin -->
+    <button id="adminToggle" title="Messages en attente">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -2251,6 +2344,13 @@
                 observer.observe(el);
             });
 
+            // =============================================
+            // SYSTÈME DE RÉPONSE PERSONNALISÉE POUR LE CHAT
+            // =============================================
+            
+            let pendingMessages = [];
+            let currentMessageIndex = -1;
+
             // Messenger functionality
             const messengerToggle = document.querySelector('.messenger-toggle');
             const messengerContainer = document.querySelector('.messenger-container');
@@ -2258,6 +2358,14 @@
             const messengerInput = document.querySelector('.messenger-input');
             const messengerSend = document.querySelector('.messenger-send');
             const messengerBody = document.getElementById('messengerBody');
+
+            // Admin panel elements
+            const adminToggle = document.getElementById('adminToggle');
+            const adminPanel = document.getElementById('adminPanel');
+            const closeAdminPanel = document.getElementById('closeAdminPanel');
+            const sendAdminResponse = document.getElementById('sendAdminResponse');
+            const adminResponse = document.getElementById('adminResponse');
+            const pendingMessagesContainer = document.getElementById('pendingMessages');
 
             // Toggle messenger
             messengerToggle.addEventListener('click', function() {
@@ -2269,15 +2377,73 @@
                 messengerContainer.style.display = 'none';
             });
 
-            // Send message
+            // Fonction pour ouvrir le panel admin
+            function openAdminPanel() {
+                adminPanel.style.display = 'block';
+                updatePendingMessages();
+            }
+
+            // Fonction pour fermer le panel admin
+            function closeAdminPanelFunc() {
+                adminPanel.style.display = 'none';
+                adminResponse.value = '';
+                currentMessageIndex = -1;
+                updatePendingMessages();
+            }
+
+            // Mettre à jour la liste des messages en attente
+            function updatePendingMessages() {
+                pendingMessagesContainer.innerHTML = '';
+                
+                if (pendingMessages.length === 0) {
+                    pendingMessagesContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Aucun message en attente</p>';
+                    adminToggle.style.display = 'none';
+                    return;
+                }
+                
+                adminToggle.style.display = 'flex';
+                adminToggle.innerHTML = `<i class="fas fa-comment-dots"></i> <small>${pendingMessages.length}</small>`;
+                
+                pendingMessages.forEach((msg, index) => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'pending-message';
+                    if (index === currentMessageIndex) {
+                        messageDiv.classList.add('selected');
+                    }
+                    
+                    messageDiv.innerHTML = `
+                        <div style="font-size: 0.8rem; color: #666; margin-bottom: 5px;">${msg.time}</div>
+                        <div>${msg.text}</div>
+                    `;
+                    
+                    messageDiv.addEventListener('click', () => {
+                        currentMessageIndex = index;
+                        updatePendingMessages();
+                    });
+                    
+                    pendingMessagesContainer.appendChild(messageDiv);
+                });
+            }
+
+            // Modifier la fonction sendMessage pour stocker les messages en attente
             function sendMessage() {
                 const message = messengerInput.value.trim();
                 if (message) {
-                    // Add user message
+                    // Ajouter le message de l'utilisateur
                     const userMessage = document.createElement('div');
                     userMessage.className = 'message sent';
                     userMessage.innerHTML = `${message}<div class="message-time">${getCurrentTime()}</div>`;
                     messengerBody.appendChild(userMessage);
+                    
+                    // Stocker le message en attente de réponse
+                    pendingMessages.push({
+                        text: message,
+                        time: getCurrentTime(),
+                        responded: false
+                    });
+                    
+                    // Mettre à jour l'affichage des messages en attente
+                    updatePendingMessages();
                     
                     // Clear input
                     messengerInput.value = '';
@@ -2285,26 +2451,46 @@
                     // Scroll to bottom
                     messengerBody.scrollTop = messengerBody.scrollHeight;
                     
-                    // Simulate response after a delay
-                    setTimeout(function() {
-                        const responses = [
-                            "Merci pour votre message ! Je vous répondrai dès que possible.",
-                            "Intéressant ! Pouvez-vous me donner plus de détails ?",
-                            "Je prends note de votre demande. Je reviens vers vous rapidement.",
-                            "C'est une excellente question ! Laissez-moi y réfléchir.",
-                            "Je suis actuellement occupé, mais je vous répondrai dès que possible."
-                        ];
-                        
-                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                        
-                        const botMessage = document.createElement('div');
-                        botMessage.className = 'message received';
-                        botMessage.innerHTML = `${randomResponse}<div class="message-time">${getCurrentTime()}</div>`;
-                        messengerBody.appendChild(botMessage);
-                        
-                        // Scroll to bottom
-                        messengerBody.scrollTop = messengerBody.scrollHeight;
-                    }, 1000 + Math.random() * 2000);
+                    // Ne pas envoyer de réponse automatique immédiatement
+                    // Attendre que vous répondiez manuellement
+                }
+            }
+
+            // Fonction pour envoyer une réponse personnalisée
+            function sendCustomResponse() {
+                const response = adminResponse.value.trim();
+                if (response && currentMessageIndex >= 0 && currentMessageIndex < pendingMessages.length) {
+                    // Ajouter la réponse dans le chat
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'message received';
+                    botMessage.innerHTML = `${response}<div class="message-time">${getCurrentTime()}</div>`;
+                    messengerBody.appendChild(botMessage);
+                    
+                    // Marquer le message comme répondu
+                    pendingMessages[currentMessageIndex].responded = true;
+                    
+                    // Retirer le message répondu de la liste
+                    pendingMessages = pendingMessages.filter(msg => !msg.responded);
+                    
+                    // Mettre à jour l'affichage
+                    updatePendingMessages();
+                    
+                    // Fermer le panel si plus de messages en attente
+                    if (pendingMessages.length === 0) {
+                        closeAdminPanelFunc();
+                    }
+                    
+                    // Vider le champ de réponse
+                    adminResponse.value = '';
+                    currentMessageIndex = -1;
+                    
+                    // Scroll to bottom
+                    messengerBody.scrollTop = messengerBody.scrollHeight;
+                    
+                    // Réouvrir le messenger s'il est fermé
+                    messengerContainer.style.display = 'flex';
+                } else if (response && currentMessageIndex === -1) {
+                    alert('Veuillez sélectionner un message auquel répondre.');
                 }
             }
 
@@ -2318,11 +2504,27 @@
                 }
             });
 
+            // Événements pour le système admin
+            adminToggle.addEventListener('click', openAdminPanel);
+            closeAdminPanel.addEventListener('click', closeAdminPanelFunc);
+            sendAdminResponse.addEventListener('click', sendCustomResponse);
+
+            // Raccourci clavier pour ouvrir le panel admin (Ctrl+Shift+A)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                    e.preventDefault();
+                    openAdminPanel();
+                }
+            });
+
             // Get current time for messages
             function getCurrentTime() {
                 const now = new Date();
                 return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
             }
+
+            // Initialiser l'affichage des messages en attente
+            updatePendingMessages();
         });
     </script>
 </body>
