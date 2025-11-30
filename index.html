@@ -23,6 +23,8 @@
             --success: #4CAF50;
             --gradient: linear-gradient(135deg, #4361EE, #3A0CA3);
             --gradient-light: linear-gradient(135deg, #4361EE, #7209B7);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         .ff-secondary {
@@ -77,6 +79,8 @@
             font-size: 0.9rem;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn::before {
@@ -828,6 +832,116 @@
             transform: scale(1.1);
         }
 
+        /* Modal pour les détails des projets */
+        .project-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.5s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .modal-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .code-snippet {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tech-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /*** Services Page ***/
         #services {
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
@@ -1450,6 +1564,7 @@
             font-size: 18px;
             border-top: 1px solid rgba(256, 256, 256, .1);
             text-align: center;
+            width: 100%;
         }
 
         .footer .copyright a {
@@ -1587,7 +1702,6 @@
                         <p>Je suis KOBA David, étudiant passionné par la Digitalisation et la Science des Données. Je crée des solutions innovantes qui repoussent les limites de la technologie.</p>
                         <div class="hero-btns">
                             <a href="#" class="btn btn-primary" data-page="projects">Voir mes projets</a>
-                            <a href="#" class="btn btn-secondary" data-page="about">En savoir plus</a>
                         </div>
                     </div>
                     <div class="hero-visual">
@@ -1767,7 +1881,7 @@
             </div>
             
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" data-project="1">
                     <div class="project-img">
                         <i class="fas fa-robot"></i>
                     </div>
@@ -1779,11 +1893,11 @@
                             <span class="project-tag">OpenCV</span>
                             <span class="project-tag">TensorFlow</span>
                         </div>
-                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                        <a href="#" class="btn btn-secondary view-project">Voir le projet</a>
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card" data-project="2">
                     <div class="project-img">
                         <i class="fas fa-assistive-listening-systems"></i>
                     </div>
@@ -1795,11 +1909,11 @@
                             <span class="project-tag">Machine Learning</span>
                             <span class="project-tag">API</span>
                         </div>
-                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                        <a href="#" class="btn btn-secondary view-project">Voir le projet</a>
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card" data-project="3">
                     <div class="project-img">
                         <i class="fas fa-chart-bar"></i>
                     </div>
@@ -1811,11 +1925,11 @@
                             <span class="project-tag">React</span>
                             <span class="project-tag">Python</span>
                         </div>
-                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                        <a href="#" class="btn btn-secondary view-project">Voir le projet</a>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-project="4">
                     <div class="project-img">
                         <i class="fas fa-brain"></i>
                     </div>
@@ -1827,11 +1941,11 @@
                             <span class="project-tag">Keras</span>
                             <span class="project-tag">TensorFlow</span>
                         </div>
-                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                        <a href="#" class="btn btn-secondary view-project">Voir le projet</a>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-project="5">
                     <div class="project-img">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
@@ -1843,11 +1957,11 @@
                             <span class="project-tag">TensorFlow Lite</span>
                             <span class="project-tag">Dart</span>
                         </div>
-                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                        <a href="#" class="btn btn-secondary view-project">Voir le projet</a>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-project="6">
                     <div class="project-img">
                         <i class="fas fa-cloud"></i>
                     </div>
@@ -1859,12 +1973,44 @@
                             <span class="project-tag">Docker</span>
                             <span class="project-tag">Kubernetes</span>
                         </div>
-                        <a href="#" class="btn btn-secondary">Voir le projet</a>
+                        <a href="#" class="btn btn-secondary view-project">Voir le projet</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal pour les détails des projets -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalProjectTitle">Titre du projet</h2>
+                <div class="project-tags" id="modalProjectTags"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalProjectImage" src="" alt="Image du projet">
+                </div>
+                <div class="modal-details">
+                    <div id="modalProjectDescription">
+                        <h3>Description</h3>
+                        <p></p>
+                    </div>
+                    <div id="modalProjectCode">
+                        <h3>Extrait de code</h3>
+                        <div class="code-snippet">
+                            <pre><code id="modalProjectCodeContent"></code></pre>
+                        </div>
+                    </div>
+                    <div id="modalProjectTech">
+                        <h3>Technologies utilisées</h3>
+                        <div class="tech-used" id="modalProjectTechList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Blog Page -->
     <section id="blog" class="page">
@@ -1881,7 +2027,7 @@
                     <div class="blog-content">
                         <div class="blog-date">15 Mars 2025</div>
                         <h3>L'avenir de l'IA dans la robotique</h3>
-                        <p>Exploration des dernières avancées en intelligence artificielle et leur impact sur le développement de robots autonomes.</p>
+                        <p>L'intelligence artificielle révolutionne la robotique en permettant aux machines d'apprendre de leur environnement et de s'adapter à des situations complexes. Dans cet article, j'explore comment les algorithmes d'apprentissage par renforcement et les réseaux de neurones profonds transforment les robots en assistants autonomes capables d'interagir avec le monde réel de manière naturelle et efficace.</p>
                         <a href="#" class="btn btn-secondary">Lire l'article</a>
                     </div>
                 </div>
@@ -1893,7 +2039,7 @@
                     <div class="blog-content">
                         <div class="blog-date">10 Février 2025</div>
                         <h3>Data Science pour débutants</h3>
-                        <p>Guide complet pour commencer en science des données avec Python, des bases aux concepts avancés.</p>
+                        <p>La science des données peut sembler intimidante, mais elle repose sur des concepts accessibles. Dans ce guide complet, je décompose les étapes essentielles pour commencer en data science avec Python : de l'acquisition et du nettoyage des données à la création de modèles prédictifs, en passant par la visualisation des résultats. Découvrez comment transformer des données brutes en insights actionnables.</p>
                         <a href="#" class="btn btn-secondary">Lire l'article</a>
                     </div>
                 </div>
@@ -1905,7 +2051,7 @@
                     <div class="blog-content">
                         <div class="blog-date">28 Janvier 2025</div>
                         <h3>Les bibliothèques Python essentielles</h3>
-                        <p>Présentation des bibliothèques Python les plus utiles pour le développement d'applications d'IA et de data science.</p>
+                        <p>Python est devenu le langage de référence pour l'IA et la data science grâce à son écosystème de bibliothèques puissantes. Dans cet article, je présente les bibliothèques Python les plus utiles : NumPy pour le calcul scientifique, Pandas pour la manipulation de données, Matplotlib pour la visualisation, Scikit-learn pour le machine learning, et TensorFlow/PyTorch pour le deep learning.</p>
                         <a href="#" class="btn btn-secondary">Lire l'article</a>
                     </div>
                 </div>
@@ -1917,7 +2063,7 @@
                     <div class="blog-content">
                         <div class="blog-date">15 Janvier 2025</div>
                         <h3>Comprendre les réseaux de neurones</h3>
-                        <p>Explication détaillée du fonctionnement des réseaux de neurones et de leur application dans divers domaines.</p>
+                        <p>Les réseaux de neurones sont au cœur de l'intelligence artificielle moderne. Dans cet article, j'explique en détail leur fonctionnement, de la structure des neurones artificiels aux architectures complexes comme les réseaux convolutifs et récurrents. J'aborde également comment ces modèles apprennent à partir de données et pourquoi ils sont si efficaces pour résoudre des problèmes complexes.</p>
                         <a href="#" class="btn btn-secondary">Lire l'article</a>
                     </div>
                 </div>
@@ -1929,7 +2075,7 @@
                     <div class="blog-content">
                         <div class="blog-date">5 Janvier 2025</div>
                         <h3>Mon parcours à SCITI</h3>
-                        <p>Témoignage sur mon expérience d'étudiant en Digitalisation et Science des Données à SCITI.</p>
+                        <p>Dans ce témoignage personnel, je partage mon expérience d'étudiant en Digitalisation et Science des Données à SCITI. Découvrez comment ce programme unique m'a permis de développer des compétences techniques solides tout en travaillant sur des projets concrets. J'aborde également les défis rencontrés et les opportunités qui s'offrent aux étudiants passionnés par les technologies émergentes.</p>
                         <a href="#" class="btn btn-secondary">Lire l'article</a>
                     </div>
                 </div>
@@ -1941,7 +2087,7 @@
                     <div class="blog-content">
                         <div class="blog-date">20 Décembre 2024</div>
                         <h3>Innovations technologiques 2025</h3>
-                        <p>Prévisions sur les tendances technologiques émergentes qui façonneront l'année 2025.</p>
+                        <p>L'année 2025 s'annonce riche en innovations technologiques. Dans cet article, j'explore les tendances émergentes qui façonneront notre avenir : l'IA générative, l'informatique quantique, la robotique collaborative, les jumeaux numériques et les interfaces cerveau-ordinateur. Découvrez comment ces technologies transformeront nos vies et créeront de nouvelles opportunités.</p>
                         <a href="#" class="btn btn-secondary">Lire l'article</a>
                     </div>
                 </div>
@@ -2525,6 +2671,346 @@
 
             // Initialiser l'affichage des messages en attente
             updatePendingMessages();
+
+            // =============================================
+            // SYSTÈME DE MODAL POUR LES PROJETS
+            // =============================================
+            
+            const projectModal = document.getElementById('projectModal');
+            const closeModal = document.querySelector('.close-modal');
+            const viewProjectButtons = document.querySelectorAll('.view-project');
+            
+            // Données des projets
+            const projectsData = {
+                1: {
+                    title: "Système de Vision Robotique",
+                    description: "Ce projet consiste en un système de vision par ordinateur avancé permettant aux robots de naviguer de manière autonome dans des environnements complexes. Le système utilise des algorithmes de traitement d'image pour détecter les obstacles, reconnaître les objets et planifier des trajectoires sûres. J'ai développé ce système en utilisant une combinaison de techniques de vision par ordinateur et d'apprentissage automatique pour améliorer la précision de la navigation.",
+                    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                    code: `import cv2
+import numpy as np
+import tensorflow as tf
+
+class RobotVisionSystem:
+    def __init__(self):
+        self.model = self.load_model()
+        self.obstacle_detector = ObstacleDetector()
+        
+    def load_model(self):
+        # Charger le modèle pré-entraîné pour la reconnaissance d'objets
+        return tf.keras.models.load_model('object_detection_model.h5')
+    
+    def process_frame(self, frame):
+        # Prétraitement de l'image
+        processed_frame = self.preprocess_frame(frame)
+        
+        # Détection d'objets
+        objects = self.detect_objects(processed_frame)
+        
+        # Détection d'obstacles
+        obstacles = self.obstacle_detector.detect(processed_frame)
+        
+        return objects, obstacles
+    
+    def preprocess_frame(self, frame):
+        # Redimensionner et normaliser l'image
+        resized = cv2.resize(frame, (224, 224))
+        normalized = resized / 255.0
+        return np.expand_dims(normalized, axis=0)`,
+                    technologies: ["Python", "OpenCV", "TensorFlow", "NumPy", "Computer Vision"]
+                },
+                2: {
+                    title: "Assistant IA Personnel",
+                    description: "J'ai développé un assistant virtuel intelligent capable de comprendre le langage naturel et d'effectuer des tâches complexes. L'assistant utilise des techniques de traitement du langage naturel (NLP) pour comprendre les requêtes des utilisateurs et peut s'adapter à leurs préférences au fil du temps. Il intègre également des capacités d'apprentissage automatique pour améliorer ses réponses en fonction des interactions passées.",
+                    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2066&q=80",
+                    code: `import speech_recognition as sr
+import pyttsx3
+from transformers import pipeline
+
+class PersonalAssistant:
+    def __init__(self):
+        self.recognizer = sr.Recognizer()
+        self.tts_engine = pyttsx3.init()
+        self.nlp_pipeline = pipeline("text-generation", model="gpt-2")
+        self.user_preferences = {}
+        
+    def listen(self):
+        with sr.Microphone() as source:
+            print("Écoute...")
+            audio = self.recognizer.listen(source)
+            
+        try:
+            text = self.recognizer.recognize_google(audio, language='fr-FR')
+            return text
+        except sr.UnknownValueError:
+            return "Désolé, je n'ai pas compris"
+    
+    def respond(self, text):
+        # Générer une réponse en fonction du contexte
+        response = self.generate_response(text)
+        self.speak(response)
+        return response
+    
+    def generate_response(self, input_text):
+        # Utiliser le modèle pour générer une réponse contextuelle
+        response = self.nlp_pipeline(input_text, max_length=100)[0]['generated_text']
+        return response`,
+                    technologies: ["Python", "NLP", "Transformers", "Speech Recognition", "Machine Learning"]
+                },
+                3: {
+                    title: "Plateforme d'Analyse Prédictive",
+                    description: "Cette plateforme web permet aux entreprises d'analyser et de visualiser leurs données avec des capacités prédictives avancées. J'ai développé un système qui combine l'analyse de données traditionnelle avec des modèles d'apprentissage automatique pour fournir des insights actionnables. La plateforme inclut des tableaux de bord interactifs, des rapports automatisés et des alertes en temps réel basées sur des modèles prédictifs.",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                    code: `import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+import plotly.express as px
+
+class PredictiveAnalyticsPlatform:
+    def __init__(self):
+        self.models = {}
+        self.data = None
+        
+    def load_data(self, file_path):
+        self.data = pd.read_csv(file_path)
+        return self.data.head()
+    
+    def preprocess_data(self):
+        # Nettoyage et préparation des données
+        self.data = self.data.dropna()
+        self.data = pd.get_dummies(self.data)
+        return self.data
+    
+    def train_model(self, target_column):
+        X = self.data.drop(columns=[target_column])
+        y = self.data[target_column]
+        
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+        
+        model = RandomForestRegressor(n_estimators=100)
+        model.fit(X_train, y_train)
+        
+        self.models[target_column] = model
+        return model.score(X_test, y_test)
+    
+    def predict(self, target_column, new_data):
+        model = self.models.get(target_column)
+        if model:
+            return model.predict(new_data)
+        return None`,
+                    technologies: ["Python", "Pandas", "Scikit-learn", "React", "Plotly", "Data Science"]
+                },
+                4: {
+                    title: "Réseau de Neurones Profonds",
+                    description: "J'ai implémenté un réseau de neurones convolutif (CNN) pour la classification d'images médicales avec une précision exceptionnelle. Ce projet utilise des techniques avancées de deep learning pour analyser des images radiologiques et aider au diagnostic médical. Le modèle a été entraîné sur un vaste ensemble de données médicales et a atteint des performances comparables à celles des experts humains dans certaines tâches de classification.",
+                    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+                    code: `import tensorflow as tf
+from tensorflow.keras import layers, models
+
+class MedicalImageClassifier:
+    def __init__(self, input_shape, num_classes):
+        self.model = self.build_model(input_shape, num_classes)
+        
+    def build_model(self, input_shape, num_classes):
+        model = models.Sequential([
+            layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
+            layers.MaxPooling2D((2, 2)),
+            layers.Conv2D(64, (3, 3), activation='relu'),
+            layers.MaxPooling2D((2, 2)),
+            layers.Conv2D(64, (3, 3), activation='relu'),
+            layers.Flatten(),
+            layers.Dense(64, activation='relu'),
+            layers.Dropout(0.5),
+            layers.Dense(num_classes, activation='softmax')
+        ])
+        
+        model.compile(optimizer='adam',
+                     loss='categorical_crossentropy',
+                     metrics=['accuracy'])
+        
+        return model
+    
+    def train(self, train_images, train_labels, epochs=10):
+        history = self.model.fit(
+            train_images, train_labels,
+            epochs=epochs,
+            validation_split=0.2
+        )
+        return history
+    
+    def predict(self, image):
+        return self.model.predict(image)`,
+                    technologies: ["Python", "TensorFlow", "Keras", "Deep Learning", "Computer Vision", "Medical AI"]
+                },
+                5: {
+                    title: "Application Mobile IA",
+                    description: "J'ai développé une application mobile qui intègre des fonctionnalités d'intelligence artificielle pour la reconnaissance d'objets en temps réel. L'application utilise TensorFlow Lite pour exécuter des modèles d'IA directement sur l'appareil mobile, sans nécessiter de connexion Internet. Elle permet aux utilisateurs de pointer leur caméra vers des objets et de recevoir des informations en temps réel, avec des applications dans l'éducation, le commerce et l'accessibilité.",
+                    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                    code: `import 'package:flutter/material.dart';
+import 'package:tflite/tflite.dart';
+import 'package:camera/camera.dart';
+
+class ObjectDetectionApp extends StatefulWidget {
+  @override
+  _ObjectDetectionAppState createState() => _ObjectDetectionAppState();
+}
+
+class _ObjectDetectionAppState extends State<ObjectDetectionApp> {
+  CameraController? controller;
+  List<CameraDescription>? cameras;
+  List<dynamic>? recognitions;
+  
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+    initializeCamera();
+  }
+  
+  loadModel() async {
+    await Tflite.loadModel(
+      model: "assets/model.tflite",
+      labels: "assets/labels.txt",
+    );
+  }
+  
+  initializeCamera() async {
+    cameras = await availableCameras();
+    controller = CameraController(cameras![0], ResolutionPreset.medium);
+    await controller!.initialize();
+    
+    controller!.startImageStream((CameraImage img) {
+      if (!mounted) return;
+      runModel(img);
+    });
+    
+    setState(() {});
+  }
+  
+  runModel(CameraImage img) async {
+    var recognitions = await Tflite.runModelOnFrame(
+      bytesList: img.planes.map((plane) {
+        return plane.bytes;
+      }).toList(),
+      imageHeight: img.height,
+      imageWidth: img.width,
+    );
+    
+    setState(() {
+      this.recognitions = recognitions;
+    });
+  }`,
+                    technologies: ["Flutter", "Dart", "TensorFlow Lite", "Mobile Development", "Computer Vision"]
+                },
+                6: {
+                    title: "Plateforme Cloud IA",
+                    description: "J'ai conçu et développé une plateforme cloud scalable pour le déploiement de modèles d'intelligence artificielle en production. Cette plateforme utilise des technologies de conteneurisation et d'orchestration pour gérer efficacement les ressources de calcul et assurer la haute disponibilité des services d'IA. Elle inclut des fonctionnalités de monitoring, de mise à l'échelle automatique et de gestion des versions des modèles, permettant aux équipes de data science de déployer rapidement leurs modèles en production.",
+                    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
+                    code: `# docker-compose.yml
+version: '3'
+services:
+  ml-api:
+    build: ./ml-api
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=/models/classifier.h5
+    volumes:
+      - ./models:/models
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+  
+  load-balancer:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - ml-api
+
+# Kubernetes deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ml-api
+  template:
+    metadata:
+      labels:
+        app: ml-api
+    spec:
+      containers:
+      - name: ml-api
+        image: ml-api:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"`,
+                    technologies: ["Docker", "Kubernetes", "AWS", "Python", "Flask", "Cloud Computing"]
+                }
+            };
+
+            // Ouvrir le modal pour afficher les détails du projet
+            viewProjectButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const projectCard = this.closest('.project-card');
+                    const projectId = projectCard.getAttribute('data-project');
+                    const projectData = projectsData[projectId];
+                    
+                    if (projectData) {
+                        document.getElementById('modalProjectTitle').textContent = projectData.title;
+                        document.getElementById('modalProjectDescription').querySelector('p').textContent = projectData.description;
+                        document.getElementById('modalProjectImage').src = projectData.image;
+                        document.getElementById('modalProjectCodeContent').textContent = projectData.code;
+                        
+                        // Mettre à jour les tags
+                        const modalTags = document.getElementById('modalProjectTags');
+                        modalTags.innerHTML = '';
+                        projectData.technologies.slice(0, 3).forEach(tag => {
+                            const tagElement = document.createElement('span');
+                            tagElement.className = 'project-tag';
+                            tagElement.textContent = tag;
+                            modalTags.appendChild(tagElement);
+                        });
+                        
+                        // Mettre à jour la liste des technologies
+                        const techList = document.getElementById('modalProjectTechList');
+                        techList.innerHTML = '';
+                        projectData.technologies.forEach(tech => {
+                            const techElement = document.createElement('span');
+                            techElement.className = 'tech-tag';
+                            techElement.textContent = tech;
+                            techList.appendChild(techElement);
+                        });
+                        
+                        projectModal.style.display = 'block';
+                    }
+                });
+            });
+
+            // Fermer le modal
+            closeModal.addEventListener('click', function() {
+                projectModal.style.display = 'none';
+            });
+
+            // Fermer le modal en cliquant à l'extérieur
+            window.addEventListener('click', function(e) {
+                if (e.target === projectModal) {
+                    projectModal.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
